@@ -5,11 +5,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
-}
-
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
@@ -17,7 +12,7 @@ datasource db {
 
 model Room {
   id         String      @id @default(uuid())
-  name       String
+  room       String      @unique()
   password   String
   created_at DateTime
   Questions  Questions[]
@@ -29,7 +24,7 @@ model Questions {
   id          String  @id @default(uuid())
   description String
   read        Boolean @default(false)
-  question    Room    @relation(fields: [questionId], references: [id])
+  question    Room    @relation(fields: [questionId], references: [room])
   questionId  String
 
   @@map("questions")

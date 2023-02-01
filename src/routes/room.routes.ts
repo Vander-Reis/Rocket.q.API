@@ -8,6 +8,6 @@ const listRoomsController = new ListRoomsController();
 const roomRoutes = Router();
 
 roomRoutes.post("/", createRoomsController.handle);
-roomRoutes.get("/", listRoomsController.handle);
+roomRoutes.get("/:room", listRoomsController.handle);
 
 export { roomRoutes };

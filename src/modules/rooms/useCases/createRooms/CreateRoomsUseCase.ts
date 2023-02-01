@@ -11,7 +11,7 @@ export class CreateRoomsUseCase {
 
     const room = await prisma.room.create({
       data: {
-        name: generateRoom,
+        room: generateRoom,
         password: password,
         created_at: new Date()
       },

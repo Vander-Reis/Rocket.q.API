@@ -3,10 +3,11 @@ import { ListRoomsUseCase } from './ListRoomsUseCase';
 
 export class ListRoomsController {
   async handle(request: Request, response: Response): Promise<Response> {
+    const { room } = request.params;
     const listRoomsUseCase = new ListRoomsUseCase();
 
-    const room = await listRoomsUseCase.execute();
+    const rooms = await listRoomsUseCase.execute({room});
 
-    return response.json(room);
+    return response.json(rooms);
   }
 }

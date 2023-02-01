@@ -1,13 +1,20 @@
 import { prisma } from "../../../../prisma/client";
 
+interface IRequest {
+  room: string;
+}
+
 export class ListRoomsUseCase {
-  async execute() {
-    const room = await prisma.room.findMany({
+  async execute({room}: IRequest) {
+    const rooms = await prisma.room.findMany({
+      where: {
+        room
+      },
       include: {
         Questions: true,
       }
     })
 
-    return room;
+    return rooms;
   }
 }
