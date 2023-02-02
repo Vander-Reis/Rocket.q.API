@@ -10,6 +10,6 @@ app.use(cors());
 
 app.use(routes);
 
-const port = 8080;
+const port = 8000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

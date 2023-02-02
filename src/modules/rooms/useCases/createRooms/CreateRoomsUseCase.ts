@@ -1,6 +1,6 @@
 import { prisma } from '../../../../prisma/client';
-import generateRoom from '../../../../utils/generateRoom';
 import { Room } from '@prisma/client';
+import { generateRandomRoom } from '../../../../utils/generateRoom';
 
 interface IRequest {
   password: string;
@@ -9,13 +9,15 @@ interface IRequest {
 export class CreateRoomsUseCase {
   async execute({ password }: IRequest): Promise<Room> {
 
-    const room = await prisma.room.create({
+    const roomRandom = generateRandomRoom()
+
+    const rooms = await prisma.room.create({
       data: {
-        room: generateRoom,
+        room: roomRandom,
         password: password,
         created_at: new Date()
       },
     });
-    return room;
+    return rooms;
   }
 }

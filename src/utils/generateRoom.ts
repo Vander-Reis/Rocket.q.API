@@ -1,4 +1,4 @@
-const numberRoom = [];
+let numberRoom: number[] = [];
 
 function generateNumberRoom() {
   const numberRandom = Math.round(Math.random() * 9);
@@ -6,9 +6,12 @@ function generateNumberRoom() {
   return numberRandom;
 }
 
-for(let i = 0; i < 6; i++) {
-  const roomRandom = generateNumberRoom();
-  numberRoom.push(roomRandom)
+export function generateRandomRoom() {
+  numberRoom = [];
+  for(let i = 0; i < 6; i++) {
+    const roomRandom = generateNumberRoom();
+    numberRoom.push(roomRandom)
+  }
+  return numberRoom.toString().replace(/,/g, "");
 }
 
-export default numberRoom.toString().replace(/,/g, "")
