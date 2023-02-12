@@ -14,17 +14,18 @@ model Room {
   id         String      @id @default(uuid())
   room       String      @unique()
   password   String
-  created_at DateTime
+  created_at DateTime    @default(now())
   Questions  Questions[]
 
   @@map("room")
 }
 
 model Questions {
-  id          String  @id @default(uuid())
+  id          String   @id @default(uuid())
   description String
-  read        Boolean @default(false)
-  question    Room    @relation(fields: [questionId], references: [room])
+  read        Boolean  @default(false)
+  created_at  DateTime @default(now())
+  question    Room     @relation(fields: [questionId], references: [room])
   questionId  String
 
   @@map("questions")
